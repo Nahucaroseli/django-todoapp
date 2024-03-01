@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500&display=swap");
+
+*{
+    font-family: 'Nunito', sans-serif;
+    background-image: url(./assets/img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background:linear-gradient(90deg,rgb(98, 46, 165) 
+    17%,rgb(54, 29, 124) 100%,rgb(64, 28, 85) 
+    100%,rgb(22, 5, 119) 100%);
+    
+}
+
+.container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.todo_container{
+    width: 100%;
+
+    text-align: center;
+}
+
+.todo_container button{
+    padding: .9rem;
+    border-radius: 5px;
+    margin-left: 10px;
+    color: white;
+    border: none;
+}
+
+.todo_container button:hover{
+    cursor: pointer;
+}
+
+.todo_container input{
+    border: none;
+    border-bottom: 1px solid black;
+    background:black;
+    height: 3rem;
+    color: white;
+    width: 35rem;
+    border-radius: 8px;
+}
+
+
+.todo_container .todo_list{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo_container .todo_list ul{
+    margin: 0;
+    list-style-type: none;
+    display:flex;
+    justify-content: center;
+
+}
+
+
+.todo_container .todo_list ul li{
+    border-bottom: 1px solid grey;
+    margin-left: 20px;
+    background:black;
+    color: white;
+    width:50rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.todo_container .todo_list ul li input{
+    width: 2rem;
+    margin-right: 20px;
+}
+
+.todo_container .todo_list li img{
+    position: absolute;
+    right: 20.5%;
+    width: 2.3rem;
+}
+
+.todo_container .todo_list li img:hover{
+   cursor: pointer;
+}
+
+
+@media screen and (max-width:765px) {
+
+
+    .todo_container .todo_list ul{
+        padding: 0;
+    }
+
+
+    .todo_container .todo_list ul li{
+        padding: 0;
+        margin-left: 0px;
+    }
+
+    .todo_container .todo_list ul li img{
+        right: 3%;
+
+    }
+    .todo_container{
+        overflow-x: hidden;
+    }
+
+    .todo_container button{
+        
+        margin-top: 10px;
+    }
+
+
+    
+}
