@@ -23,10 +23,13 @@
         </form>
        <div class="todo_list">
         {% for task in tasks %}
+        {% csrf_token %}
             <ul >  
-        
-              <li><input type="checkbox" id="task-{{ task.taskId }}"  class="modify-task"  data-completed="{{ task.done }}" data-task-id="{{ task.taskId }}" >{{task.title}} <img class="deleteTask" src="{% static 'todoapp/img/close_icon.png' %}" alt="" data-task-id="{{ task.taskId }}"></li> 
-   
+              {% if task.done %}
+              <li><input type="checkbox"  class="modify-task" checked="checked"  data-id-task="{{ task.taskId }}" >{{task.title}} <img class="deleteTask" src="{% static 'todoapp/img/close_icon.png' %}" alt="" data-task-id="{{ task.taskId }}"></li> 
+              {% else %}
+              <li><input type="checkbox" class="modify-task"  data-id-task="{{ task.taskId }}" >{{task.title}} <img class="deleteTask" src="{% static 'todoapp/img/close_icon.png' %}" alt="" data-task-id="{{ task.taskId }}"></li> 
+              {% endif %}
             </ul>
           {% endfor %}
        </div>

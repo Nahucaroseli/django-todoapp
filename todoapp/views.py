@@ -42,8 +42,10 @@ def delete_task(request):
 @csrf_exempt
 def modify_task(request):
     task_id = request.POST.get('task_id')
-    completed = request.POST.get('completed')
-    task = Task.objects.get(taskId=task_id)
-    task.completed = completed
+    task = get_object_or_404(Task, taskId=task_id)
+    if task.done == False:
+        task.done = True
+    else:
+        task.done = False
     task.save()
-    return JsonResponse({'status': 'success', 'message': 'Tarea modificada exitosamente'})
+    return redirect('Home')

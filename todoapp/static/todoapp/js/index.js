@@ -21,22 +21,19 @@ $('.deleteTask').on('click', function() {
 
 
 $('.modify-task').on('click', function() {
-    var taskId = $(this).data('task-id');
-    var completed = $(this).data('completed');
+    var taskId = $(this).data('id-task');
     $.ajax({
         type: 'POST',
         url: '/modify_task/',
         data: {
             'task_id': taskId,
-            'completed': !completed,
             'csrfmiddlewaretoken': '{{ csrf_token }}'
         },
         success: function(response) {
-            console.log(completed)
-            console.log('Tarea modificada exitosamente');
+
         },
         error: function(response) {
-            console.error('Error al modificar la tarea');
+
         }
     });
 });
