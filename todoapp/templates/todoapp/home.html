@@ -22,11 +22,13 @@
             <button>Create</button>
         </form>
        <div class="todo_list">
-            <ul >
-                {% for task in tasks %}
-              <li><input type="checkbox">{{task.title}} <img  src="{% static 'todoapp/img/close_icon.png' %}" alt=""> </li> 
-                {% endfor %}
+        {% for task in tasks %}
+            <ul >  
+        
+              <li><input type="checkbox" id="task-{{ task.taskId }}"  class="modify-task"  data-completed="{{ task.done }}" data-task-id="{{ task.taskId }}" >{{task.title}} <img class="deleteTask" src="{% static 'todoapp/img/close_icon.png' %}" alt="" data-task-id="{{ task.taskId }}"></li> 
+   
             </ul>
+          {% endfor %}
        </div>
     </div>
 </div>
