@@ -43,9 +43,6 @@ def delete_task(request):
 def modify_task(request):
     task_id = request.POST.get('task_id')
     task = get_object_or_404(Task, taskId=task_id)
-    if task.done == False:
-        task.done = True
-    else:
-        task.done = False
+    task.done = not task.done
     task.save()
     return redirect('Home')

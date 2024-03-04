@@ -19,7 +19,6 @@
         <form action="add_task/" method="POST">
             {% csrf_token %}
             <input type="text" name="title" id="taskInput"  placeholder="Escribir una tarea">
-            <button>Create</button>
         </form>
        <div class="todo_list">
         {% for task in tasks %}
