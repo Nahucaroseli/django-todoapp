@@ -1,5 +1,4 @@
 $('.deleteTask').on('click', function() {
-    console.log("hola")
    
     var taskId = $(this).data('task-id');
     $.ajax({
@@ -37,3 +36,4 @@ $('.modify-task').on('click', function() {
         }
     });
 });
+

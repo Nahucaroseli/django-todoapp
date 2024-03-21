@@ -20,6 +20,10 @@
             {% csrf_token %}
             <input type="text" name="title" id="taskInput"  placeholder="Escribir una tarea">
         </form>
+        <form action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+          <button class="logout" type="submit">Logout</button>
+        </form>
        <div class="todo_list">
         {% for task in tasks %}
         {% csrf_token %}

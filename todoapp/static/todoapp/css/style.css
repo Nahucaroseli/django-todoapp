@@ -32,6 +32,18 @@
 
 
 
+.todo_container .logout{
+    
+    position: absolute;
+    background: white;
+    top: 5%;
+    color: black;
+    font-weight: bold;
+    right: 4%;
+    border-radius: 10px;
+}
+
+
 .todo_container button{
     padding: .9rem;
     border-radius: 5px;
