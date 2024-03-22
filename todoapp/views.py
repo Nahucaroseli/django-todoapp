@@ -4,7 +4,7 @@ from todoapp.models import Task
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate,logout
 # Create your views here.
 
@@ -21,7 +21,8 @@ def home(request):
 def add_task(request):
     if request.method == 'POST':
             title = request.POST.get('title')
-            tarea = Task.objects.create(title=title,done=0)
+            user_id = request.user.id
+            tarea = Task.objects.create(title=title,done=0,user_id=user_id)
             tarea.save()
             return redirect('Home')
     else:
@@ -53,6 +54,12 @@ def modify_task(request):
 
 
 
+def signup_view(request):
+     return redirect('signup')
+ 
+ 
+def signin_view(request):
+    return redirect('signin')
 
 def signup(request):
     if request.method == 'POST':
@@ -67,6 +74,25 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'todoapp/signup.html', {'form': form})
+
+
+
+def signin(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # Redirigir a la página de inicio o a la URL especificada en 'next'
+                next_url = request.GET.get('next', 'Home')
+                return redirect(next_url)
+    else:
+        form = AuthenticationForm()
+    return render(request, 'todoapp/login.html', {'form': form})
+
 
 
 def logout_view(request):

@@ -18,6 +18,7 @@
       <h1>TODO APP</h1>
         <form action="add_task/" method="POST">
             {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{request.user.id}}">
             <input type="text" name="title" id="taskInput"  placeholder="Escribir una tarea">
         </form>
         <form action="{% url 'logout' %}" method="POST">
@@ -27,6 +28,7 @@
        <div class="todo_list">
         {% for task in tasks %}
         {% csrf_token %}
+        
             <ul >  
               {% if task.done %}
               <li><input type="checkbox"  class="modify-task" checked="checked"  data-id-task="{{ task.taskId }}" >{{task.title}} <img class="deleteTask" src="{% static 'todoapp/img/close_icon.png' %}" alt="" data-task-id="{{ task.taskId }}"></li> 
