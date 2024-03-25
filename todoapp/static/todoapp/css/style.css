@@ -30,13 +30,20 @@
     text-align: center;
 }
 
-
+.user_name{
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    color: black;
+    background: none;
+    font-weight: bold;
+}
 
 .todo_container .logout{
     
     position: absolute;
     background: white;
-    top: 5%;
+    top: 4%;
     color: black;
     font-weight: bold;
     right: 4%;
@@ -116,8 +123,36 @@
 }
 
 
+.todo_container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.todo_container form label{
+    background:none;
+}
+
+.todo_container form input, .todo_container form button{
+    margin-top: 20px;
+}
+
+
+
+
+@media screen and (max-width:1200px) {
+    .user_name{
+        display: none;
+    }
+
+}
+
+
 @media screen and (max-width:765px) {
 
+   
 
     .todo_container .todo_list ul{
         padding: 0;

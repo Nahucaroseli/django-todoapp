@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
+from django.contrib.auth.models import User
 from todoapp.models import Task
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -10,7 +11,7 @@ from django.contrib.auth import login, authenticate,logout
 
 def home(request):
    if request.user.is_authenticated:
-        tasks = Task.objects.all()
+        tasks = Task.objects.filter(user=request.user)
         return render(request,'todoapp/home.html', {'tasks':tasks})
    else:
        return redirect('signup')
@@ -63,17 +64,14 @@ def signin_view(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('Home')  # Cambia 'task_list' por la vista de tu lista de tareas
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = User.objects.create_user(username=username, password=password)
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('Home')  # Cambia 'task_list' por la vista de tu lista de tareas
     else:
-        form = UserCreationForm()
-    return render(request, 'todoapp/signup.html', {'form': form})
+        return render(request, 'todoapp/signup.html')
 
 
 
@@ -97,5 +95,4 @@ def signin(request):
 
 def logout_view(request):
     logout(request)
-    form = UserCreationForm()
-    return redirect('signup')
+    return redirect('signin')

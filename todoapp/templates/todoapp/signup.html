@@ -16,9 +16,13 @@
 <div class="container">
   <div class="todo_container">
     <h1>SIGN UP</h1>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
+    <form action="signup" method="POST">
+          {% csrf_token %}
+          <label for="">Username</label>
+          <input type="text" name="username" id="">
+          <label for="">Password</label>
+          <input type="text" name="password" id="">
+      
       <button type="submit">Sign up</button>
   </form>
   </div>
